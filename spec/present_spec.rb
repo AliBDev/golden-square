@@ -1,20 +1,22 @@
-# require "present"
+require "present"
 
-# RSpec.describe Present do
-#   it "wraps and unwraps a value" do
-#     present = Present.new
-#     present.wrap(6)
-#     expect(present.unwrap).to eq 6
-#   end
+RSpec.describe Present do
 
-#   it "fails if we unwrap without wrapping first" do
-#     present = Present.new
-#     expect { present.unwrap }.to raise_error "No contents have been wrapped"
-#   end
+  context "contents have already been wrapped" do
+    it "gives an error if trying to wrap again" do
+      gift = Present.new
+      gift.wrap("Toy")
+      expect { gift.wrap("PS5") }.to raise_error "The contents have already been wrapped."
+    end
+  end
 
-#   it "fails if we wrap if we've already wrapped" do
-#     present = Present.new
-#     present.wrap(6)
-#     expect { present.wrap(7) }.to raise_error "A contents has already been wrapped"
-#   end
-# end
+  context "no contents are wrapped yet" do
+    it "gives an error if trying to unwrap" do
+      gift = Present.new
+      expect { gift.unwrap }.to raise_error "No contents have been wrapped."
+    end
+  end
+end
+
+
+
