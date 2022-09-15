@@ -1,11 +1,16 @@
 require "password_checker"
+
 RSpec.describe PasswordChecker do
-    it "Checks if password length is greater than 8" do
-      passwordchecker = PasswordChecker.new
-      expect(passwordchecker.check("makersacademy")).to eq true
+
+  context "checks the validity of a password" do
+    it "returns true for a password that is >= 8 characters" do
+      password = PasswordChecker.new
+      expect(password.check("Microwave")).to eq true
     end
-it "fails if password is less than 8" do
-    passwordchecker = PasswordChecker.new
-    expect {passwordchecker.check("makers")}.to raise_error "Invalid password, must be 8+ characters."
-end
+
+    it "returns an error for a password that is < 8 characters" do
+      password = PasswordChecker.new
+      expect { password.check("Cat") }.to raise_error "Invalid password, must be 8+ characters."
+    end
+  end
 end

@@ -18,5 +18,3 @@ RSpec.describe Present do
   end
 end
 
-
-

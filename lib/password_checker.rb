@@ -7,3 +7,7 @@ class PasswordChecker
     end
   end
 end
+
+password = PasswordChecker.new
+
+puts password.check("Microwave")
